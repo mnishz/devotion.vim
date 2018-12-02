@@ -74,6 +74,10 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - Pull request to improve this plugin or wording is welcome! I'd like to know more effective Vim script coding. Thank you.
 
 # 概要
+あなたが .vimrc 弄りに~~費やした~~捧げた時間を測ってくれるプラグインです。
+その他にも Vim script や help を参照、編集していた時間も測ります。
+各ファイルごとに参照時間、編集時間を測りログに残します。
+各コマンドを実行することでログからそれぞれの時間を計算し、表示します。
 ## 監視対象ファイル
 ## 特徴
 # スクリーンショット
