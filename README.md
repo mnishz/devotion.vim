@@ -1,6 +1,6 @@
 # devotion.vim
-It measures how much time you spend for Vim.
-[日本語版]()は下のほうにあります。
+It measures how much time you spend for Vim.  
+[日本語版](https://github.com/mnishz/devotion.vim#%E6%A6%82%E8%A6%81)は下のほうにあります。
 
 # Overview
 This plugin monitors your activitiy for Vim using autocommand-events and logs it for each file.
@@ -16,6 +16,7 @@ When you type any commmand, the total time is added up and echoed.
 - Stand-alone
 
 # Screenshot
+![screenshot](https://raw.github.com/wiki/mnishz/devotion.vim/images/screenshot.png)
 
 # How to use
 1. Install this plugin using some plugin manager.
@@ -48,7 +49,7 @@ When you type any commmand, the total time is added up and echoed.
     - The first day of previous year, the first day of this year
 
 # Sequence
-See [autoload\devotion.vim]().
+See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef08f48f8add8f3939d86bdcb486ee6e4f7/autoload/devotion.vim#L147).
 
 # Options
 - g:devotion#log_file
