@@ -1,16 +1,16 @@
 # devotion.vim
-It measures how much time you spend for Vim.  
+It measures how much time you spend on Vim.  
 [日本語版](https://github.com/mnishz/devotion.vim#%E6%A6%82%E8%A6%81)は下のほうにあります。
 
 # Overview
 This plugin monitors your activitiy for Vim using autocommand-events and logs it for each file.
 When you type any commmand, the total time is added up and echoed.
-## Target
+## Monitoring file
 - Running time of Vim.
-- View time of vim filetype.
-- Edit time of vim filetype.
-- View time of help filetype.
-- Edit time of help filetype.
+- View (normal mode) time of vim filetype.
+- Edit (insert mode) time of vim filetype.
+- View (normal mode) time of help filetype.
+- Edit (insert mode) time of help filetype.
 ## Features
 - Pure Vim script
 - Stand-alone
@@ -71,8 +71,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - [ ] Loss of trailing digits
 
 # Misc.
-- Please let me know or create a pull request if there are improper expression or unnatural wording.
-- Pull request to improve this plugin is also welcome! Thank you.
+- Pull request to improve this plugin or wording is welcome! Thank you.
 
 # 概要
 ## 対象
