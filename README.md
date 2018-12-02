@@ -23,32 +23,32 @@ When you type any commmand, the total time is added up and echoed.
     - If you don't use plugin manager, `:h packages` will be helpful.
 1. Edit vimrc or *.vim or read some help.
 1. Type `:DevotionToday`
-    - It shows how much time you spend today for Vim.
+    - It shows how much time you spend on Vim today.
 
 # Commands
 - DevotionRange
-    - It shows how much time you spend for Vim between *start_time* and *stop_time*.
+    - It shows how much time you spend on Vim between *start_time* and *stop_time*.
     - Parameter format: %Y%m%d%H%M%S (Number)
-    - Example: from 2018/12/31 12:34:56 to 2019/01/01 00:00:00. (stop_time is exclueded.)
+    - Example: from 2018/12/31 12:34:56 to 2019/01/01 00:00:00. (stop_time itself is exclueded.)
         - `:DevotionRange 20181231123456 20190101000000`
 - DevotionToday
-    - It calls DevotionRange with today's 00:00:00 and tomorrows's 00:00:00.
+    - It calls DevotionRange with today's 00:00:00 and tomorrow's 00:00:00.
 - DevotionLastDay
     - It calls DevotionRange with 00:00:00 of the last day you use Vim and today's 00:00:00.
 - DevotionThisWeek
-    - Sunday of this week, sunday of next week
+    - From sunday of this week to sunday of next week
 - DevotionLastWeek
-    - Sunday of previous week, sunday of this week
+    - From sunday of previous week to sunday of this week
 - DevotionThisMonth
-    - The first day of this month, the first day of next month
+    - From the first day of this month to the first day of next month
 - DevotionLastMonth
-    - The first day of previous month, the first day of this month
+    - From the first day of previous month to the first day of this month
 - DevotionThisYear
-    - The first day of this year, the first day of next year
+    - From the first day of this year to the first day of next year
 - DevotionLastYear
-    - The first day of previous year, the first day of this year
+    - From the first day of previous year to the first day of this year
 
-# Sequence
+# Monitoring flow
 See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef08f48f8add8f3939d86bdcb486ee6e4f7/autoload/devotion.vim#L147).
 
 # Options
@@ -71,14 +71,14 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - [ ] Loss of trailing digits
 
 # Misc.
-- Pull request to improve this plugin or wording is welcome! Thank you.
+- Pull request to improve this plugin or wording is welcome! I'd like to know more effective Vim script coding. Thank you.
 
 # 概要
-## 対象
+## 監視対象ファイル
 ## 特徴
 # スクリーンショット
 # 使い方
 # コマンド
-# シーケンス
+# 監視フロー
 # オプション
 # その他
