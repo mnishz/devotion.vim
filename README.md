@@ -7,10 +7,10 @@ This plugin monitors your activitiy for Vim using autocommand-events and logs it
 When you type any commmand, the total time is added up and echoed.
 ## Monitoring file
 - Running time of Vim.
-- View (normal mode) time of vim filetype.
-- Edit (insert mode) time of vim filetype.
-- View (normal mode) time of help filetype.
-- Edit (insert mode) time of help filetype.
+- View (normal mode) time of "vim" filetype.
+- Edit (insert mode) time of "vim" filetype.
+- View (normal mode) time of "help" filetype.
+- Edit (insert mode) time of "help" filetype.
 ## Features
 - Pure Vim script
 - Stand-alone
@@ -21,7 +21,7 @@ When you type any commmand, the total time is added up and echoed.
 # How to use
 1. Install this plugin using some plugin manager.
     - If you don't use plugin manager, `:h packages` will be helpful.
-1. Edit vimrc or *.vim or read some help.
+1. Edit vimrc or *.vim (Vim script) file or read some help.
 1. Type `:DevotionToday`
     - It shows how much time you spend on Vim today.
 
@@ -54,7 +54,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 # Options
 - g:devotion#log_file
     - Path and name of log files.
-    - Default: ~/.local/share/devotioin/devotion_log_YYYYMM
+    - Default: $XDG_DATA_HOME/devotioin/devotion_log (use '~/.local/share' if $XDG_DATA_HOME is empty)
 - g:devotion#debug_enabled
     - Logs for debugging if v:true.
     - Default: v:false
@@ -63,6 +63,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 ## High
 - [ ] Add test!
 - [ ] Set debug flag to v:false.
+- [ ] License
 ## Mid
 - [ ] Add vim style document.
 - [ ] Write out all logs at some interval.
@@ -71,18 +72,69 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - [ ] Loss of trailing digits
 
 # Misc.
-- Pull request to improve this plugin or wording is welcome! I'd like to know more effective Vim script coding. Thank you.
+- Pull request to improve this plugin or English wording/expression of the document is welcome! I'd like to know more effective Vim script coding. Thank you.
 
 # 概要
-あなたが .vimrc 弄りに~~費やした~~捧げた時間を測ってくれるプラグインです。
+あなたが vimrc 弄りに~~費やしてしまった~~捧げた時間を測ってくれるプラグインです。
 その他にも Vim script や help を参照、編集していた時間も測ります。
 各ファイルごとに参照時間、編集時間を測りログに残します。
 各コマンドを実行することでログからそれぞれの時間を計算し、表示します。
 ## 監視対象ファイル
+- Vim の実行時間
+- "vim" ファイルタイプの参照 (ノーマルモード) 時間
+- "vim" ファイルタイプの編集 (挿入モード) 時間
+- "help" ファイルタイプの参照 (ノーマルモード) 時間
+- "help" ファイルタイプの編集 (挿入モード) 時間
 ## 特徴
+- Pure Vim script
+- スタンドアローン
+
 # スクリーンショット
+[Screenshot](https://github.com/mnishz/devotion.vim#screenshot) を参照
+
 # 使い方
+1. プラグインマネージャか何かを使って devotion.vim をインストールします。
+    - プラグインマネージャを使っていない場合は、`:h packages` が参考になると思います。
+1. vimrc や *.vim (Vim スクリプト) ファイルを編集、もしくはヘルプを読みます。
+1. `:DevotionToday` と入力します。
+    - 今日どれくらいの時間を Vim に捧げたか表示します。
+
 # コマンド
+- DevotionRange
+    - 2 つの引数 *start_time* および *stop_time* を持ち、この間に費やした時間を表示します。
+    - 引数フォーマット: %Y%m%d%H%M%S (数値)
+    - 例: 2018/12/31 12:34:56 から 2019/01/01 00:00:00 まで (stop_time 自身は含まれません。)
+        - `:DevotionRange 20181231123456 20190101000000`
+- DevotionToday
+    - 今日の 00:00:00 および明日の 00:00:00 で DevotionRange を呼び出します。
+- DevotionLastDay
+    - 最後に Vim を使った日の 00:00:00 および今日の 00:00:00 で DevotionRange を呼び出します。
+- DevotionThisWeek
+    - 今週の日曜日から来週の日曜日まで
+- DevotionLastWeek
+    - 先週の日曜日から今週の日曜日まで
+- DevotionThisMonth
+    - 今月の最初の日から来月の最初の日まで
+- DevotionLastMonth
+    - 先月の最初の日から今月の最初の日まで
+- DevotionThisYear
+    - 今年の最初の日から来年の最初の日まで
+- DevotionLastYear
+    - 昨年の最初の日から今年の最初の日まで
+
 # 監視フロー
+[autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef08f48f8add8f3939d86bdcb486ee6e4f7/autoload/devotion.vim#L147) を参照
+
 # オプション
+- g:devotion#log_file
+    - ログファイルのパスおよびファイル名
+    - 初期値: $XDG_DATA_HOME/devotioin/devotion_log ($XDG_DATA_HOME が空の場合は '~/.local/share')
+- g:devotion#debug_enabled
+    - v:true の場合、デバッグ用のログを出力する。
+    - 初期値: v:false
+
+# TODOs
+[英語版](https://github.com/mnishz/devotion.vim#todos) を参照
+
 # その他
+Vim script のより良い書き方を学びたいのでプルリクエスト歓迎です。英訳や言葉遣いに関しても不自然な点があればご指摘いただけると嬉しいです。

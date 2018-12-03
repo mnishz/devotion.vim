@@ -144,7 +144,10 @@ function! g:devotion#LastYear() abort
   call g:devotion#Range(l:last_year, l:this_year)
 endfunction
 
-" autocmd functions
+" timer behavior
+"     |:       timer is active, elapsed time increases.
+"     *:       timer is inactive due to focus lost, elapsed time doesn't increase.
+"     <space>: timer is inactive dut to mode change, elapsed time doesn't increase.
 "
 " autocmd event       vim_timer   view_timer   edit_timer
 "
@@ -169,6 +172,8 @@ endfunction
 " BufLeave/BufUnload   |          Stop/Log     Log
 "                      |
 " VimLeave            Stop/Log
+
+" autocmd functions
 
 function! g:devotion#BufEnter() abort
   call g:devotion#log#LogAutocmdEvent('BufEnter   ')
