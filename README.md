@@ -97,7 +97,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
     - プラグインマネージャを使っていない場合は、`:h packages` が参考になると思います。
 1. vimrc や *.vim (Vim スクリプト) ファイルを編集、もしくはヘルプを読みます。
 1. `:DevotionToday` と入力します。
-    - 今日どれくらいの時間を Vim に捧げたか表示します。
+    - 今日どれくらいの時間を Vim のために捧げたか表示します。
 
 # コマンド
 - DevotionRange
@@ -123,7 +123,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
     - 昨年の最初の日から今年の最初の日まで
 
 # 監視フロー
-[autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef08f48f8add8f3939d86bdcb486ee6e4f7/autoload/devotion.vim#L147) を参照
+[autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/master/autoload/devotion.vim#L147) を参照
 
 # オプション
 - g:devotion#log_file
