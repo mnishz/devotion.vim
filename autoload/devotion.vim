@@ -52,6 +52,10 @@ function! s:CompareTotalTime(lhs, rhs) abort
   endif
 endfunction
 
+function! s:GetCurrTime() abort
+  return strftime('%Y%m%d%H%M%S')
+endfunction
+
 " command functions
 
 function! g:devotion#Range(start_time, stop_time) abort
@@ -176,23 +180,25 @@ endfunction
 " autocmd functions
 
 function! g:devotion#BufEnter() abort
-  call g:devotion#log#LogAutocmdEvent('BufEnter   ')
+  call g:devotion#log#LogAutocmdEvent('BufEnter   ', <SID>GetCurrTime())
   call s:view_timer.Initialize(devotion#GetEventBufferFileName())
   call s:view_timer.Start()
   call s:edit_timer.Initialize(devotion#GetEventBufferFileName())
 endfunction
 
 function! g:devotion#BufLeave() abort
-  call g:devotion#log#LogAutocmdEvent('BufLeave   ')
+  let l:time = <SID>GetCurrTime()
+  call g:devotion#log#LogAutocmdEvent('BufLeave   ', l:time)
   call s:view_timer.Stop()
-  call g:devotion#log#LogElapsedTime(s:view_timer)
-  call g:devotion#log#LogElapsedTime(s:edit_timer)
+  call g:devotion#log#LogElapsedTime(s:view_timer, l:time)
+  call g:devotion#log#LogElapsedTime(s:edit_timer, l:time)
   call s:view_timer.Clear()
   call s:edit_timer.Clear()
 endfunction
 
 function! g:devotion#BufUnload() abort
-  call g:devotion#log#LogAutocmdEvent('BufUnload  ')
+  let l:time = <SID>GetCurrTime()
+  call g:devotion#log#LogAutocmdEvent('BufUnload  ', l:time)
   " each case can happen, BufUnload might be a little irregular
   "   BufEnter -> BufLeave -> BufUnload
   "   BufEnter -> BufUnload for the target file
@@ -200,29 +206,29 @@ function! g:devotion#BufUnload() abort
   " just check the file name
   if s:view_timer.IsSameFileName()
     call s:view_timer.Stop()
-    call g:devotion#log#LogElapsedTime(s:view_timer)
+    call g:devotion#log#LogElapsedTime(s:view_timer, l:time)
     call s:view_timer.Clear()
   endif
   if s:edit_timer.IsSameFileName()
-    call g:devotion#log#LogElapsedTime(s:edit_timer)
+    call g:devotion#log#LogElapsedTime(s:edit_timer, l:time)
     call s:edit_timer.Clear()
   endif
 endfunction
 
 function! g:devotion#InsertEnter() abort
-  call g:devotion#log#LogAutocmdEvent('InsertEnter')
+  call g:devotion#log#LogAutocmdEvent('InsertEnter', <SID>GetCurrTime())
   call s:view_timer.Stop()
   call s:edit_timer.Start()
 endfunction
 
 function! g:devotion#InsertLeave() abort
-  call g:devotion#log#LogAutocmdEvent('InsertLeave')
+  call g:devotion#log#LogAutocmdEvent('InsertLeave', <SID>GetCurrTime())
   call s:view_timer.Start()
   call s:edit_timer.Stop()
 endfunction
 
 function! g:devotion#FocusLost() abort
-  call g:devotion#log#LogAutocmdEvent('FocusLost  ')
+  call g:devotion#log#LogAutocmdEvent('FocusLost  ', <SID>GetCurrTime())
   call s:vim_timer.SuspendIfNeeded()
   if g:devotion#IsTargetFile()
     call s:view_timer.SuspendIfNeeded()
@@ -231,7 +237,7 @@ function! g:devotion#FocusLost() abort
 endfunction
 
 function! g:devotion#FocusGained() abort
-  call g:devotion#log#LogAutocmdEvent('FocusGained')
+  call g:devotion#log#LogAutocmdEvent('FocusGained', <SID>GetCurrTime())
   if !s:just_after_VimEnter  " workaround
     call s:vim_timer.RestartIfNeeded()
   else
@@ -244,15 +250,16 @@ function! g:devotion#FocusGained() abort
 endfunction
 
 function! g:devotion#VimEnter() abort
-  call g:devotion#log#LogAutocmdEvent('VimEnter   ')
+  call g:devotion#log#LogAutocmdEvent('VimEnter   ', <SID>GetCurrTime())
   call s:vim_timer.Initialize('Vim')
   call s:vim_timer.Start()
   let s:just_after_VimEnter = v:true  " workaround
 endfunction
 
 function! g:devotion#VimLeave() abort
-  call g:devotion#log#LogAutocmdEvent('VimLeave   ')
+  let l:time = <SID>GetCurrTime()
+  call g:devotion#log#LogAutocmdEvent('VimLeave   ', l:time)
   call s:vim_timer.Stop()
-  call g:devotion#log#LogElapsedTime(s:vim_timer)
+  call g:devotion#log#LogElapsedTime(s:vim_timer, l:time)
   call s:vim_timer.Clear()
 endfunction

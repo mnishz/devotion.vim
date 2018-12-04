@@ -8,10 +8,6 @@ let s:TIME_OVER  = -2 | lockvar s:TIME_OVER
 
 " local utilities
 
-function! s:GetDateTimeStr() abort
-  return strftime('%Y%m%d%H%M%S')
-endfunction
-
 function! s:TimeSearch(logs, time) abort
   if eval(a:logs[0]).t > a:time | return s:TIME_UNDER | endif
   if eval(a:logs[-1]).t < a:time | return s:TIME_OVER | endif
@@ -47,17 +43,16 @@ endfunction
 
 " log related functions
 
-function! g:devotion#log#LogElapsedTime(timer) abort
+function! g:devotion#log#LogElapsedTime(timer, curr_time) abort
   if !empty(a:timer.GetElapsedTime())
-    let l:timestamp = eval(<SID>GetDateTimeStr())
     let l:data = {
-          \ 't':  l:timestamp,
+          \ 't':  a:curr_time,
           \ 'e':  a:timer.GetElapsedTime(),
           \ 'tt': a:timer.GetTimerType(),
           \ 'ft': g:devotion#GetEventBufferFileType(),
           \ 'f':  a:timer.GetFileName(),
           \}
-    let l:split_file = g:devotion#log_file . '_' . l:timestamp[0:5]
+    let l:split_file = g:devotion#log_file . '_' . a:curr_time[0:5]
     call writefile([string(l:data)], l:split_file, 'a')
   endif
 endfunction
@@ -190,10 +185,10 @@ function! g:devotion#log#GetLastDay(today) abort
   return l:last_day
 endfunction
 
-function! g:devotion#log#LogAutocmdEvent(event) abort
+function! g:devotion#log#LogAutocmdEvent(event, curr_time) abort
   if g:devotion#debug_enabled
     let l:data = a:event
-    let l:data .= ' ' . <SID>GetDateTimeStr()
+    let l:data .= ' ' . a:curr_time
     let l:data .= ' ' . g:devotion#GetEventBufferFileName()
     call writefile([l:data], g:devotion#debug_file, 'a')
   endif
