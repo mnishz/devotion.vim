@@ -21,7 +21,7 @@ When you type any commmand, the total time is added up and echoed.
 # How to use
 1. Install this plugin using some plugin manager.
     - If you don't use plugin manager, `:h packages` will be helpful.
-1. Edit vimrc or *.vim (Vim script) file or read some help.
+1. Edit vimrc or \*.vim (Vim script) file or read some help.
 1. Type `:DevotionToday`
     - It shows how much time you spend on Vim today.
 
@@ -29,7 +29,7 @@ When you type any commmand, the total time is added up and echoed.
 - DevotionRange
     - It shows how much time you spend on Vim between *start_time* and *stop_time*.
     - Parameter format: %Y%m%d%H%M%S (Number)
-    - Example: from 2018/12/31 12:34:56 to 2019/01/01 00:00:00. (stop_time itself is exclueded.)
+    - Example: from 2018/12/31 12:34:56 to 2019/01/01 00:00:00. (*stop_time* itself is exclueded.)
         - `:DevotionRange 20181231123456 20190101000000`
 - DevotionToday
     - It calls DevotionRange with today's 00:00:00 and tomorrow's 00:00:00.
@@ -52,16 +52,17 @@ When you type any commmand, the total time is added up and echoed.
 See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef08f48f8add8f3939d86bdcb486ee6e4f7/autoload/devotion.vim#L147).
 
 # Options
-- g:devotion#log_file
+- g:devotion#log\_file
     - Path and name of log files.
-    - Default: $XDG_DATA_HOME/devotioin/devotion_log (use '~/.local/share' if $XDG_DATA_HOME is empty)
-- g:devotion#debug_enabled
+    - Default: $XDG\_DATA\_HOME/devotioin/devotion\_log (use '~/.local/share' if $XDG\_DATA\_HOME is empty)
+- g:devotion#debug\_enabled
     - Logs for debugging if v:true.
     - Default: v:false
 
 # TODOs
 ## High
 - [ ] Add test!
+- [ ] Travis CI
 - [ ] Set debug flag to v:false.
 - [ ] License
 ## Mid
@@ -95,7 +96,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 # 使い方
 1. プラグインマネージャか何かを使って devotion.vim をインストールします。
     - プラグインマネージャを使っていない場合は、`:h packages` が参考になると思います。
-1. vimrc や *.vim (Vim スクリプト) ファイルを編集、もしくはヘルプを読みます。
+1. vimrc や \*.vim (Vim スクリプト) ファイルを編集、もしくはヘルプを読みます。
 1. `:DevotionToday` と入力します。
     - 今日どれくらいの時間を Vim のために捧げたか表示します。
 
@@ -103,7 +104,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - DevotionRange
     - 2 つの引数 *start_time* および *stop_time* を持ち、この間に費やした時間を表示します。
     - 引数フォーマット: %Y%m%d%H%M%S (数値)
-    - 例: 2018/12/31 12:34:56 から 2019/01/01 00:00:00 まで (stop_time 自身は含まれません。)
+    - 例: 2018/12/31 12:34:56 から 2019/01/01 00:00:00 まで (*stop_time* 自身は含まれません。)
         - `:DevotionRange 20181231123456 20190101000000`
 - DevotionToday
     - 今日の 00:00:00 および明日の 00:00:00 で DevotionRange を呼び出します。
@@ -126,10 +127,10 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/master/autoload/devotion.vim#L147) を参照
 
 # オプション
-- g:devotion#log_file
+- g:devotion#log\_file
     - ログファイルのパスおよびファイル名
-    - 初期値: $XDG_DATA_HOME/devotioin/devotion_log ($XDG_DATA_HOME が空の場合は '~/.local/share')
-- g:devotion#debug_enabled
+    - 初期値: $XDG\_DATA\_HOME/devotioin/devotion\_log ($XDG\_DATA\_HOME が空の場合は '~/.local/share')
+- g:devotion#debug\_enabled
     - v:true の場合、デバッグ用のログを出力する。
     - 初期値: v:false
 
@@ -137,4 +138,4 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 [英語版](https://github.com/mnishz/devotion.vim#todos) を参照
 
 # その他
-Vim script のより良い書き方を学びたいのでプルリクエスト歓迎です。英訳や言葉遣いに関しても不自然な点があればご指摘いただけると嬉しいです。
+Vim script のより良い書き方を学びたいので改善点などあればプルリクエスト歓迎です。英訳や言葉遣いに関しても不自然な点があればご指摘いただけると嬉しいです。
