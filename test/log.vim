@@ -1,7 +1,6 @@
 let s:suite = themis#suite('test for autoload/log.vim')
 let s:assert = themis#helper('assert')
 
-" expand('%:p') じゃ駄目なんだっけ？
 let s:file_name = fnamemodify('test/log.vim', ':p')
 
 function! s:suite.before_each() abort
@@ -17,12 +16,12 @@ function! s:suite.log_empty_test() abort
 endfunction
 
 function! s:suite.log_simple_test() abort
-  let l:timer = g:devotion#timer#Timer.New('edit')
+  let l:timer = g:devotion#timer#Timer.New('view')
   call l:timer.Initialize(s:file_name)
   let l:timer.elapsed_time = 1.0
   call g:devotion#log#LogElapsedTime(l:timer, 20000101000000)
 
-  let l:timer = g:devotion#timer#Timer.New('view')
+  let l:timer = g:devotion#timer#Timer.New('edit')
   call l:timer.Initialize(s:file_name)
   let l:timer.elapsed_time = 2.0
   call g:devotion#log#LogElapsedTime(l:timer, 20000102000000)
@@ -35,22 +34,22 @@ function! s:suite.log_simple_test() abort
   let l:result = g:devotion#log#AddUpElapsedTime(20000101000000, 20000102000000)
   " filetype is not set because actual autocmd does
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 1.0, 'view': 0.0, 'total': 1.0}]
+        \ 'vim': 0.0, 'view': 1.0, 'edit': 0.0, 'total': 1.0}]
   call s:assert.equals(l:result, l:expected)
 
   let l:result = g:devotion#log#AddUpElapsedTime(20000102000000, 20000103000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 0.0, 'view': 2.0, 'total': 2.0}]
+        \ 'vim': 0.0, 'view': 0.0, 'edit': 2.0, 'total': 2.0}]
   call s:assert.equals(l:result, l:expected)
 
   let l:result = g:devotion#log#AddUpElapsedTime(20000103000000, 20000104000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 4.0, 'edit': 0.0, 'view': 0.0, 'total': 4.0}]
+        \ 'vim': 4.0, 'view': 0.0, 'edit': 0.0, 'total': 4.0}]
   call s:assert.equals(l:result, l:expected)
 
   let l:result = g:devotion#log#AddUpElapsedTime(20000101000000, 20000104000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 4.0, 'edit': 1.0, 'view': 2.0, 'total': 7.0}]
+        \ 'vim': 4.0, 'view': 1.0, 'edit': 2.0, 'total': 7.0}]
   call s:assert.equals(l:result, l:expected)
 
   let l:result = g:devotion#log#AddUpElapsedTime(19700101000000, 19700102000000)
@@ -61,7 +60,7 @@ function! s:suite.log_simple_test() abort
 endfunction
 
 function! s:suite.log_multi_log_file_test() abort
-  let l:timer = g:devotion#timer#Timer.New('edit')
+  let l:timer = g:devotion#timer#Timer.New('view')
   call l:timer.Initialize(s:file_name)
   let l:timer.elapsed_time = 1.0
   call g:devotion#log#LogElapsedTime(l:timer, 20180101000000)
@@ -73,17 +72,17 @@ function! s:suite.log_multi_log_file_test() abort
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180201000000, 20180301000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 2.0, 'view': 0.0, 'total': 2.0}]
+        \ 'vim': 0.0, 'view': 2.0, 'edit': 0.0, 'total': 2.0}]
   call s:assert.equals(l:result, l:expected)
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180101000000, 20180301000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 3.0, 'view': 0.0, 'total': 3.0}]
+        \ 'vim': 0.0, 'view': 3.0, 'edit': 0.0, 'total': 3.0}]
   call s:assert.equals(l:result, l:expected)
 endfunction
 
 function! s:initialize_range_test() abort
-  let l:timer = g:devotion#timer#Timer.New('edit')
+  let l:timer = g:devotion#timer#Timer.New('view')
   call l:timer.Initialize(s:file_name)
   let l:timer.elapsed_time = 1.0
   call g:devotion#log#LogElapsedTime(l:timer, 20180110000000)
@@ -104,19 +103,19 @@ function! s:suite.log_range_1_test() abort
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180101000000, 20180115000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 1.0, 'view': 0.0, 'total': 1.0}]
+        \ 'vim': 0.0, 'view': 1.0, 'edit': 0.0, 'total': 1.0}]
   call s:assert.equals(l:result, l:expected)  " 1-3-1
   let l:result = g:devotion#log#AddUpElapsedTime(20180101000000, 20180120000000)
   call s:assert.equals(l:result, l:expected)  " 1-3-2
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180101000000, 20180125000000)
-  let [l:expected[0].edit, l:expected[0].total] = [3.0, 3.0]
+  let [l:expected[0].view, l:expected[0].total] = [3.0, 3.0]
   call s:assert.equals(l:result, l:expected)  " 1-4-1
   let l:result = g:devotion#log#AddUpElapsedTime(20180101000000, 20180130000000)
   call s:assert.equals(l:result, l:expected)  " 1-4-2
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180101000000, 20180201000000)
-  let [l:expected[0].edit, l:expected[0].total] = [7.0, 7.0]
+  let [l:expected[0].view, l:expected[0].total] = [7.0, 7.0]
   call s:assert.equals(l:result, l:expected)  " 1-5
 endfunction
 
@@ -125,20 +124,20 @@ function! s:suite.log_range_2_test() abort
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180110000000, 20180115000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 1.0, 'view': 0.0, 'total': 1.0}]
+        \ 'vim': 0.0, 'view': 1.0, 'edit': 0.0, 'total': 1.0}]
   call s:assert.equals(l:result, l:expected)  " 2-2
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180110000000, 20180120000000)
   call s:assert.equals(l:result, l:expected)  " 2-3-1
   let l:result = g:devotion#log#AddUpElapsedTime(20180110000000, 20180125000000)
-  let [l:expected[0].edit, l:expected[0].total] = [3.0, 3.0]
+  let [l:expected[0].view, l:expected[0].total] = [3.0, 3.0]
   call s:assert.equals(l:result, l:expected)  " 2-3-2
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180110000000, 20180130000000)
   call s:assert.equals(l:result, l:expected)  " 2-4
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180110000000, 20180201000000)
-  let [l:expected[0].edit, l:expected[0].total] = [7.0, 7.0]
+  let [l:expected[0].view, l:expected[0].total] = [7.0, 7.0]
   call s:assert.equals(l:result, l:expected)  " 2-5
 endfunction
 
@@ -147,14 +146,14 @@ function! s:suite.log_range_3_test() abort
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180120000000, 20180125000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 2.0, 'view': 0.0, 'total': 2.0}]
+        \ 'vim': 0.0, 'view': 2.0, 'edit': 0.0, 'total': 2.0}]
   call s:assert.equals(l:result, l:expected)  " 3-3
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180120000000, 20180130000000)
   call s:assert.equals(l:result, l:expected)  " 3-4
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180120000000, 20180201000000)
-  let [l:expected[0].edit, l:expected[0].total] = [6.0, 6.0]
+  let [l:expected[0].view, l:expected[0].total] = [6.0, 6.0]
   call s:assert.equals(l:result, l:expected)  " 3-5
 endfunction
 
@@ -163,7 +162,7 @@ function! s:suite.log_range_4_test() abort
 
   let l:result = g:devotion#log#AddUpElapsedTime(20180130000000, 20180201000000)
   let l:expected = [{'file': s:file_name, 'filetype': '',
-        \ 'vim': 0.0, 'edit': 4.0, 'view': 0.0, 'total': 4.0}]
+        \ 'vim': 0.0, 'view': 4.0, 'edit': 0.0, 'total': 4.0}]
   call s:assert.equals(l:result, l:expected)  " 4-4, 4-5
 endfunction
 
@@ -184,7 +183,8 @@ function! s:suite.log_invaid_args_test() abort
 endfunction
 
 function! s:suite.log_get_last_day_test() abort
-  let l:timer = g:devotion#timer#Timer.New('edit')
+  call s:assert.equals(g:devotion#log#GetLastDay(20180101000000), 0)
+  let l:timer = g:devotion#timer#Timer.New('view')
   call l:timer.Initialize(s:file_name)
   let l:timer.elapsed_time = 1.0
   call g:devotion#log#LogElapsedTime(l:timer, 20180101000000)
@@ -195,10 +195,25 @@ function! s:suite.log_get_last_day_test() abort
   call s:assert.equals(g:devotion#log#GetLastDay(20180120000000), 20180110000000)
   call s:assert.equals(g:devotion#log#GetLastDay(20180210000000), 20180110000000)
   call s:assert.equals(g:devotion#log#GetLastDay(20000101000000), 0)
-  " log が空のときのテストを足す。
 endfunction
 
 function! s:suite.log_multi_logged_file_test() abort
-  " 'test/log.vim' しかテストできていないので、同じログファイル内に他のファイ
-  " ルがあるケースもテストする。
+  let l:data = {
+        \ 't':  20180101000000,
+        \ 'e':  1.0,
+        \ 'tt': 'edit',
+        \ 'ft': 'help',
+        \ 'f':  'foobar.txt',
+        \ }
+  call writefile([string(l:data)], g:devotion#log_file . '_' . 201801, 'a')
+  call <SID>initialize_range_test()
+
+  let l:result = sort(g:devotion#log#AddUpElapsedTime(20180101000000, 20190101000000))
+  let l:expected = sort([
+        \ { 'file': s:file_name, 'filetype': '',
+        \   'vim': 0.0, 'view': 7.0, 'edit': 0.0, 'total': 7.0 },
+        \ { 'file': 'foobar.txt', 'filetype': 'help',
+        \   'vim': 0.0, 'view': 0.0, 'edit': 1.0, 'total': 1.0 },
+        \ ])
+  call s:assert.equals(l:result, l:expected)
 endfunction
