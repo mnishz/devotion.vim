@@ -1,5 +1,6 @@
 # devotion.vim
-It measures how much time you spend on Vim.  
+~~This plugin monitors how much time you spend on vimrc editing at work~~.  
+This plugin measures how much you devote your time to Vim.  
 [日本語版](https://github.com/mnishz/devotion.vim#%E6%A6%82%E8%A6%81)は下のほうにあります。
 
 # Overview
