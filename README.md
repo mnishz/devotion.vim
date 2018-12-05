@@ -61,9 +61,9 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 
 # TODOs
 ## High
-- [ ] Add test!
+- [x] Add test!
+- [ ] Improve test
 - [ ] Travis CI
-- [ ] Set debug flag to v:false.
 - [ ] License
 ## Mid
 - [ ] Add vim style document.

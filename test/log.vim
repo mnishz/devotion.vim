@@ -1,6 +1,7 @@
 let s:suite = themis#suite('test for autoload/log.vim')
 let s:assert = themis#helper('assert')
 
+" expand('%:p') じゃ駄目なんだっけ？
 let s:file_name = fnamemodify('test/log.vim', ':p')
 
 function! s:suite.before_each() abort
@@ -59,7 +60,7 @@ function! s:suite.log_simple_test() abort
   call s:assert.empty(l:result)
 endfunction
 
-function! s:suite.log_multi_file_test() abort
+function! s:suite.log_multi_log_file_test() abort
   let l:timer = g:devotion#timer#Timer.New('edit')
   call l:timer.Initialize(s:file_name)
   let l:timer.elapsed_time = 1.0
@@ -194,4 +195,10 @@ function! s:suite.log_get_last_day_test() abort
   call s:assert.equals(g:devotion#log#GetLastDay(20180120000000), 20180110000000)
   call s:assert.equals(g:devotion#log#GetLastDay(20180210000000), 20180110000000)
   call s:assert.equals(g:devotion#log#GetLastDay(20000101000000), 0)
+  " log が空のときのテストを足す。
+endfunction
+
+function! s:suite.log_multi_logged_file_test() abort
+  " 'test/log.vim' しかテストできていないので、同じログファイル内に他のファイ
+  " ルがあるケースもテストする。
 endfunction
