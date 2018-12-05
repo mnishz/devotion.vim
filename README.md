@@ -8,8 +8,8 @@ This plugin monitors your activitiy for Vim using autocommand-events and logs it
 When you type any commmand, the total time is added up and echoed.
 ## Monitoring file
 - Running time of Vim.
-- View (normal mode) time of "vim" filetype.
-- Edit (insert mode) time of "vim" filetype.
+- View (normal mode) time of "vim" filetype including vimrc.
+- Edit (insert mode) time of "vim" filetype including vimrc.
 - View (normal mode) time of "help" filetype.
 - Edit (insert mode) time of "help" filetype.
 ## Features
@@ -83,8 +83,8 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 各コマンドを実行することでログからそれぞれの時間を計算し、表示します。
 ## 監視対象ファイル
 - Vim の実行時間
-- "vim" ファイルタイプの参照 (ノーマルモード) 時間
-- "vim" ファイルタイプの編集 (挿入モード) 時間
+- "vim" ファイルタイプ (vimrc含む) の参照 (ノーマルモード) 時間
+- "vim" ファイルタイプ (vimrc含む) の編集 (挿入モード) 時間
 - "help" ファイルタイプの参照 (ノーマルモード) 時間
 - "help" ファイルタイプの編集 (挿入モード) 時間
 ## 特徴
