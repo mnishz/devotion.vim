@@ -31,7 +31,7 @@ function! g:devotion#GetEventBufType() abort
 endfunction
 
 function! g:devotion#IsTargetFile() abort
-  let l:bt = g:devotion#GetEventBufType()
+  let l:bt = g:devotion#GetEventBufType()  " exclude command line window like `q:`
   let l:ft = g:devotion#GetEventBufferFileType()
   if (empty(l:bt) || (l:bt ==# 'help')) && ((l:ft ==# 'vim') || (l:ft ==# 'help'))
     return v:true
@@ -72,8 +72,7 @@ function! g:devotion#Range(start_time, stop_time) abort
     for entry in l:data
       if entry.file ==# 'Vim'
         echo entry.file
-        " TODO: wording
-        echo '  Opened: ' . string(entry.vim)
+        echo '  Ran:    ' . string(entry.vim)
       else
         echo entry.file . ' (filetype: ' . entry.filetype . ')'
         echo '  Viewed: ' . string(entry.view)
