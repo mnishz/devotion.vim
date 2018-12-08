@@ -1,4 +1,4 @@
-" TODO: Vim global plugin for correcting typing mistakes
+" Vim plugin to measure how much you devote your time to Vim.
 " Last Change:  2018/10/22
 " Maintainer:   Masato Nishihata
 " License:      This file is placed in the public domain.

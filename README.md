@@ -65,13 +65,15 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - [x] Add test!
 - [ ] Improve test
 - [ ] Travis CI
-- [ ] License
 ## Mid
 - [ ] Add vim style document.
 - [ ] Write out all logs at some interval.
 - [ ] Improve event detection method.
 ## Low
 - [ ] Loss of trailing digits
+
+# License
+MIT License
 
 # Misc.
 - Pull request to improve this plugin or English wording/expression of the document is welcome! I'd like to know more effective Vim script coding. Thank you.
@@ -137,6 +139,9 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 
 # TODOs
 [英語版](https://github.com/mnishz/devotion.vim#todos) を参照
+
+# ライセンス
+MIT License
 
 # その他
 Vim script のより良い書き方を学びたいので改善点などあればプルリクエスト歓迎です。英訳や言葉遣いに関しても不自然な点があればご指摘いただけると嬉しいです。
