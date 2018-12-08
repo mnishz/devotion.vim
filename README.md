@@ -6,7 +6,7 @@ This plugin measures how much you devote your time to Vim.
 # Overview
 This plugin monitors your activitiy for Vim using autocommand-events and logs it for each file.
 When you type any commmand, the total time is added up and echoed.
-## Monitoring file
+## Monitoring target file
 - Running time of Vim.
 - View (normal mode) time of "vim" filetype including vimrc.
 - Edit (insert mode) time of "vim" filetype including vimrc.
@@ -67,7 +67,7 @@ See [autoload\devotion.vim](https://github.com/mnishz/devotion.vim/blob/988a4ef0
 - [ ] Travis CI
 ## Mid
 - [ ] Add vim style document.
-- [ ] Write out all logs at some interval.
+- [ ] Flush out all logs at some interval.
 - [ ] Improve event detection method.
 ## Low
 - [ ] Loss of trailing digits
@@ -90,7 +90,7 @@ MIT License
 - "help" ファイルタイプの参照 (ノーマルモード) 時間
 - "help" ファイルタイプの編集 (挿入モード) 時間
 ## 特徴
-- Pure Vim script
+- Vim script 100%
 - スタンドアローン
 
 # スクリーンショット
@@ -144,4 +144,4 @@ MIT License
 MIT License
 
 # その他
-Vim script のより良い書き方を学びたいので改善点などあればプルリクエスト歓迎です。英訳や言葉遣いに関しても不自然な点があればご指摘いただけると嬉しいです。
+Vim script のより良い書き方を学びたいので改善点などあれば指摘、プルリクエストしてもらえると嬉しいです。英訳や言葉遣いに関しても不自然な点があればご指摘いただけると助かります。

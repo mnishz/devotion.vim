@@ -1,7 +1,7 @@
 " Vim plugin to measure how much you devote your time to Vim.
-" Last Change:  2018/10/22
-" Maintainer:   Masato Nishihata
-" License:      This file is placed in the public domain.
+" Last Change:  2018/12/08
+" Maintainer:   mnishz
+" License:      MIT License
 
 if exists('g:loaded_devotion')
   finish
